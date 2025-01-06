@@ -1,4 +1,4 @@
 <%= turbo_frame_tag dom_id(link), class: "block" do %>
-  <%= link.to_param %>
+  <%= link_to link.to_param, link, data: { turbo_frame: "_top" } %>
   <%= link.url %>
 <% end %>
