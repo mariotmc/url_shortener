@@ -1,4 +1,5 @@
 class Link < ApplicationRecord
+  belongs_to :user, optional: true
   has_many :views, dependent: :destroy
 
   validates :url, presence: true, uniqueness: true
@@ -21,5 +22,9 @@ class Link < ApplicationRecord
 
   def display_url
     url.sub(/^https?:\/\//, '')
+  end
+
+  def editable_by?(user)
+    user_id? && user_id == user&.id
   end
 end
