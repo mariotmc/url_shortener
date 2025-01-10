@@ -18,4 +18,8 @@ class Link < ApplicationRecord
   def domain
     URI.parse(url).host rescue nil
   end
+
+  def display_url
+    url.sub(/^https?:\/\//, '')
+  end
 end
