@@ -4,9 +4,14 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   test "links index" do
     get links_path
     assert_response :success
+  end
+
+  test "links index with pagination" do
+    get links_path(page: 1)
+    assert_response :success
 
     get links_path(page: 2)
-    assert_response :success
+    assert_redirected_to root_path # redirect to if page does not exist
   end
 
   test "links show" do
