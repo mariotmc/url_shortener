@@ -8,8 +8,8 @@ class Link < ApplicationRecord
 
   scope :recent_first, -> { order(created_at: :desc) }
 
-  def self.find(id)
-    super(ShortCode.decode(id))
+  def self.find_by_short_code(short_code)
+    find(ShortCode.decode(short_code))
   end
 
   def to_param
